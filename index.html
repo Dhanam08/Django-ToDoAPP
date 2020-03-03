@@ -1,0 +1,43 @@
+<style>
+    .cls:checked+label
+    {
+        text-decoration: line-through;
+        color:darkred;
+    }
+</style>
+<form method="POST">
+    {% csrf_token %}
+    <h1 style="margin-left: 350px;color:lightcoral;">TO DO LIST</h1>
+<table  style="margin-top:40px;margin-left:300px;background-color: lightcoral;height: 70px;width: 300px;">
+   
+    {{task.as_table}}
+    <tr>
+        <td></td>
+        <td></td>
+        <td><input type="submit" value="add"></td>
+    </tr>
+   
+</table>
+<table style="margin-left:300px;background-color: lightcoral;height: 300px;width: 300px;">
+    <tr>
+        <th><p style="text-align:center;">TO DO LIST</p></th><br/>
+    </tr>
+   
+        {% for all in alltask %}
+        
+        <tr>
+            <td><a href="/cancel/{{all.id}}">cancel</a></td>
+            <td>
+                <input type="checkbox" value="{{all.task}}" class="cls">
+                <label>{{all.task}}</label>
+            </td> 
+            
+        </tr>
+        {% endfor %}
+  <tr>
+      <td colspan="2">
+          <a href="/clear/">clear</a>
+      </td>
+  </tr>
+</table>
+</form>
